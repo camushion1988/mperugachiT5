@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="mperugachiAC5.Views.vPersona"
+             Title="vPersona">
+    <VerticalStackLayout
+        Spacing="25">
+        <Label 
+            Text="BASE DE DATOS SQLITE"
+            FontSize="24"
+            HorizontalTextAlignment="Center" />
+
+        <Entry x:Name="txtName"
+               Placeholder="Ingrese nombre"/>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <!--eliminar Width="Auto"-->
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="btnInsertar"
+                    Text="Insertar"
+                    Clicked="btnInsertar_Clicked"
+                    Grid.Row="0"
+                    Grid.Column="0"/>
+
+            <Label x:Name="lblStatus"
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   TextColor="Blue"/>
+
+            <Button x:Name="btnObtener"
+                    Text="Listar Personas"
+                    Clicked="btnObtener_Clicked"
+                    Grid.Row="2"
+                    Grid.Column="0"/>
+
+            <CollectionView x:Name="ListaPersona" ItemsSource="{Binding Tareas}" SelectionMode="Single"
+                            Grid.Row="3"
+                            Grid.Column="0">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="2" ColumnSpacing="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <!--eliminar Width="*"-->
+                                <ColumnDefinition/>
+                                <!--eliminar width="2"-->
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{Binding Id}" Grid.Column="0"/>
+                            <Label Text="{Binding Name}" Grid.Column="1"/>
+                            <Button Text="Editar" Clicked="Button_Clicked" CommandParameter="{Binding .}" Grid.Column="2"/>
+                            <Button Text="Eliminar" Clicked="Button_Clicked_1" CommandParameter="{Binding .}" Grid.Column="3"/>
+                            
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>
